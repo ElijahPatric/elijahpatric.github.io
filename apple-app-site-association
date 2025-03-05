@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "EX38SQ8V24.com.bes.atl.chipntap",
+                "paths": ["/OAuthResponse/*"]
+            }
+        ]
+    }
+}
