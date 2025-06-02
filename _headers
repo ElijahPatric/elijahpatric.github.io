@@ -1,2 +1,3 @@
-/.well-known/apple-app-site-association.json
+/apple-app-site-association
   Content-Type: application/json
+  Content-Disposition: inline
