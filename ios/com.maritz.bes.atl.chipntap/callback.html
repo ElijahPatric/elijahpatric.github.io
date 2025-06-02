@@ -2,22 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="apple-itunes-app" content="app-id=YOUR_APP_ID">
     <title>Redirecting to App...</title>
     <script>
         // Universal Links will handle this automatically on iOS
-        // For Android/fallback, use custom scheme
         setTimeout(() => {
             // Get query parameters
             const query = window.location.search || '';
             
-            // Use custom scheme as fallback
-            window.location.href = `cloverburner2://oauth-callback${query}`;
-            
-            // Optional: Close window after redirection
-            setTimeout(() => {
-                window.close();
-            }, 1000);
+            // Use both Universal Link and custom scheme as fallback
+            window.location.href = `https://elijahpatric.github.io/ios/com.maritz.bes.atl.chipntap/callback${query}`;
         }, 1500);
     </script>
     <style>
@@ -39,20 +32,51 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007aff;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Authentication Successful!</h1>
     <div class="spinner"></div>
     <p>Redirecting back to the app...</p>
-    <p><small>If redirection doesn't happen automatically, <a id="manualLink" href="#">tap here</a>.</small></p>
+    <p><small>If redirection doesn't happen automatically, tap the button below.</small></p>
+    
+    <a id="manualLink" class="btn">Open App</a>
 
     <script>
-        // Setup manual link as fallback
-        document.getElementById('manualLink').href = `cloverburner2://oauth-callback${window.location.search}`;
+        // Setup manual link
+        const manualLink = document.getElementById('manualLink');
+        const query = window.location.search || '';
         
-        // For debugging: Log URL params
+        // Try Universal Link first, then custom scheme
+        manualLink.href = `https://elijahpatric.github.io/ios/com.maritz.bes.atl.chipntap/callback${query}`;
+        
+        // Add click handler as fallback
+        manualLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // First try Universal Link
+            window.location.href = manualLink.href;
+            
+            // If not redirected in 1 second, try custom scheme
+            setTimeout(() => {
+                if (!document.hidden) {
+                    window.location.href = `cloverburner2://oauth-callback${query}`;
+                }
+            }, 1000);
+        });
+        
+        // For debugging
         console.log('OAuth callback received:', window.location.search);
+        console.log('Universal Link URL:', manualLink.href);
     </script>
 </body>
 </html>
