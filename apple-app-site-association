@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "EX38SQ8V24.com.maritz.bes.atl.chipntap",
+                "paths": ["/ios/com.maritz.bes.atl.chipntap/callback"]
+            }
+        ]
+    }
+}
