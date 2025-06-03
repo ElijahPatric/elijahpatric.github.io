@@ -4,7 +4,7 @@
         "details": [
             {
                 "appID": "EX38SQ8V24.com.maritz.bes.atl.chipntap",
-                "path": ["/ios/com.maritz.bes.atl.chipntap/callback"]
+                "path": ["*"]
             }]
     }
 }
